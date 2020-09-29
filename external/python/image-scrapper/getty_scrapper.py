@@ -12,7 +12,7 @@ import urllib.parse as urlparse
 
 import cv2
 import numpy as np
-
+import urllib.parse
 
 image_type = '.jpg'
 image_counter = 1
@@ -130,6 +130,8 @@ if __name__ == "__main__":
     parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
     parser.add_argument('--license', default=None, choices=["rf", "rm"], nargs="+")
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
+    parser.add_argument('--orientations', default=None, choices=["horizontal", "vertical","square","panoramichorizontal"], nargs="+")
+
     parser.add_argument('--debug', action="store_true", default=False)
     args = parser.parse_args()
 
@@ -141,12 +143,14 @@ if __name__ == "__main__":
     people_composition = args.composition
     license = args.license
     debug_output = args.debug
-    
+    orientations = args.orientations
     #image_resolution = f"{args.resolution}x{args.resolution}"
     
     
 
-    query_parsed = query.lower().replace(' ', '-')
+    #query_parsed = query.lower().replace(' ', '-')
+    query_parsed = urllib.parse.quote(query.lower())
+
 
     url = 'https://www.gettyimages.com/photos/{}?family=editorial&sort={}'.format(
         str(query_parsed), sort)
@@ -162,6 +166,10 @@ if __name__ == "__main__":
     if license != None:
         license_query = ','.join(license)
         url +=  '&license=' + license_query
+        
+    if orientations != None:
+        orientations_query = ','.join(orientations)
+        url +=  '&orientations=' + orientations_query
 
     if debug_output: print(url)
     page = 1
