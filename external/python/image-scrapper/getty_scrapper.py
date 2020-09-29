@@ -16,7 +16,7 @@ import numpy as np
 
 image_type = '.jpg'
 image_counter = 1
-
+image_resolution ='2048x20248'
 getty_watermark_id = 5
 wireimage_watermark_id = 125
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     license = args.license
     debug_output = args.debug
     
-    image_resolution = f"{args.resolution}x{args.resolution}"
+    #image_resolution = f"{args.resolution}x{args.resolution}"
     
     
 
