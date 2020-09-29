@@ -37,7 +37,7 @@ def get_image_list(url, download_folder, limit):
     if debug_output: print (image_list)
     for image in image_list:
         if image_counter > limit:
-            raise Exception("Reached download limit")
+            raise Exception("Reached download limit") #todo
         if debug_output: print (image['src'])
         image_thumbnail_url = image['src']
         image_url = image_thumbnail_url.split('?')[0] + '?s=' + image_resolution
