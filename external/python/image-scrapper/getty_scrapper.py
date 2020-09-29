@@ -136,6 +136,7 @@ if __name__ == "__main__":
     limit = int(args.limit)
     sort = args.sort
     num_people = args.people
+    people_composition = args.composition
     license = args.license
     
 
