@@ -125,7 +125,7 @@ if __name__ == "__main__":
     parser.add_argument("query", help="Give the query that I should parse.")
     parser.add_argument("save_folder", help="Save folder to download images.")
     parser.add_argument("--limit", default=6000) # 60 * 100
-    parser.add_argument("--resolution", default=2048) 
+    parser.add_argument("--resolution", default=2048) # only tested with 1024 / 2048
     parser.add_argument('--sort', default="best", choices=["best", "oldest", "newest", "mostpopular"])
     parser.add_argument('--family', default="editorial", choices=["creative", "editorial"])
     parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
@@ -145,7 +145,8 @@ if __name__ == "__main__":
     license = args.license
     debug_output = args.debug
     orientations = args.orientations
-    #image_resolution = f"{args.resolution}x{args.resolution}"
+    family_type = args.family
+    image_resolution = f"{args.resolution}x{args.resolution}"
     
     
 
