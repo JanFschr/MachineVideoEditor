@@ -126,7 +126,7 @@ if __name__ == "__main__":
     parser.add_argument("save_folder", help="Save folder to download images.")
     parser.add_argument("--limit", default=6000) # 60 * 100
     parser.add_argument('--sort', default="best", choices=["best", "oldest", "newest", "mostpopular"])
-    parser.add_argument('--people', default=None, choices=["one", "two", "group"], nargs="+")
+    parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
     args = parser.parse_args()
 
