@@ -179,6 +179,8 @@ if __name__ == "__main__":
     if orientations != None:
         orientations_query = ','.join(orientations)
         url +=  '&orientations=' + orientations_query
+        
+    url +="&mediatype=photography"
 
     if debug_output: print(url)
     page = 1
