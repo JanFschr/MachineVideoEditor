@@ -16,7 +16,7 @@ import numpy as np
 
 image_type = '.jpg'
 image_counter = 1
-image_resolution ='2048x2048'
+image_resolution ='1024x1024'
 getty_watermark_id = 5
 wireimage_watermark_id = 125
 
