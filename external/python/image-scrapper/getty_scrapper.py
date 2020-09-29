@@ -155,7 +155,7 @@ if __name__ == "__main__":
         
     if license != None:
         license_query = ','.join(license)
-        url +=  '&license=' + composition_query
+        url +=  '&license=' + license_query
 
     # print (url)
     page = 1
