@@ -129,7 +129,7 @@ if __name__ == "__main__":
     parser.add_argument('--sort', default="best", choices=["best", "oldest", "newest", "mostpopular"])
     parser.add_argument('--family', default="editorial", choices=["creative", "editorial"])
     parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
-    parser.add_argument('--license', default=None, choices=["rf", "rm"])
+    parser.add_argument('--license', default=None, choices=["rf", "rm"], nargs="+")
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
     parser.add_argument('--orientations', default=None, choices=["horizontal", "vertical","square","panoramichorizontal"], nargs="+")
 
