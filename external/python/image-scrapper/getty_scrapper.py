@@ -13,7 +13,7 @@ import urllib.parse as urlparse
 import cv2
 import numpy as np
 
-image_resolution = '2048x2048'
+
 image_type = '.jpg'
 image_counter = 1
 
@@ -33,14 +33,14 @@ def get_image_list(url, download_folder, limit):
         raise Exception("Gallery is empty")
     gallery = gallery_list[0]
     image_list = soup.select('.gallery-mosaic-asset__container img')
-    # print (image_list)
+    if debug_output: print (image_list)
     for image in image_list:
         if image_counter > limit:
             raise Exception("Reached download limit")
-        # print (image['src'])
+        if debug_output: print (image['src'])
         image_thumbnail_url = image['src']
         image_url = image_thumbnail_url.split('?')[0] + '?s=' + image_resolution
-        # print (image_url)
+        if debug_output: print (image_url)
         download_path = os.path.join(download_folder, str(image_counter) + image_type)
 
         # download single file version
@@ -125,10 +125,12 @@ if __name__ == "__main__":
     parser.add_argument("query", help="Give the query that I should parse.")
     parser.add_argument("save_folder", help="Save folder to download images.")
     parser.add_argument("--limit", default=6000) # 60 * 100
+    parser.add_argument("--resolution", default=2048) 
     parser.add_argument('--sort', default="best", choices=["best", "oldest", "newest", "mostpopular"])
     parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
     parser.add_argument('--license', default=None, choices=["rf", "rm"], nargs="+")
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
+    parser.add_argument('--debug', action="store_true", default=False)
     args = parser.parse_args()
 
     query = args.query
@@ -138,6 +140,10 @@ if __name__ == "__main__":
     num_people = args.people
     people_composition = args.composition
     license = args.license
+    debug_output = args.debug
+    
+    image_resolution = f"{args.resolution}x{args.resolution}"
+    
     
 
     query_parsed = query.lower().replace(' ', '-')
@@ -157,7 +163,7 @@ if __name__ == "__main__":
         license_query = ','.join(license)
         url +=  '&license=' + license_query
 
-    # print (url)
+    if debug_output: print(url)
     page = 1
     while page < 100:
         url_page = url + '&page=' + str(page)
