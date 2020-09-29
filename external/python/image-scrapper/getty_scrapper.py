@@ -141,6 +141,10 @@ if __name__ == "__main__":
     parser.add_argument('--orientations', default=None, choices=["horizontal", "vertical","square","panoramichorizontal"], nargs="+")
     parser.add_argument("--locations", default=None, nargs="+") # get locations from getty link
     
+    parser.add_argument("--zipfile", default=None)
+    parser.add_argument("--syncfolder", default=None) 
+    parser.add_argument("--sync-interval", default=5000, dest="sync_interval")
+    
     parser.add_argument('--debug', action="store_true", default=False)
     args = parser.parse_args()
 
@@ -157,6 +161,9 @@ if __name__ == "__main__":
     image_resolution = f"{args.resolution}x{args.resolution}"
     locations = args.locations
     
+    zipfile_path = args.zipfile
+    syncfolder_path = args.syncfolder
+    sync_interval = args.sync_interval
     
 
     #query_parsed = query.lower().replace(' ', '-')
