@@ -41,7 +41,7 @@ def get_image_list(url, download_folder, limit):
         image_thumbnail_url = image['src']
         image_url = image_thumbnail_url.split('?')[0] + '?s=' + image_resolution
         if debug_output: print (image_url)
-        download_path = os.path.join(download_folder, str(image_counter) + image_type)
+        download_path = os.path.join(download_folder, '{n:09d}'.format(n=image_counter) + image_type)
 
         # download single file version
         # try:
