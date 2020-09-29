@@ -9,6 +9,7 @@ import os
 import sys
 from fake_useragent import UserAgent
 import urllib.parse as urlparse
+import gc
 
 import cv2
 import numpy as np
@@ -66,12 +67,18 @@ def get_image_list(url, download_folder, limit):
         if wireimage_raw != None and getty_raw != None:
             merged_img = merge_images(getty_raw, wireimage_raw)
             cv2.imwrite(download_path, merged_img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+            del merged_img
+            del wireimage_raw
+            del getty_raw
+            gc.collect()
         elif wireimage_raw != None:
             with open(download_path, 'wb') as f:
                 shutil.copyfileobj(wireimage_raw, f)
+                del wireimage_raw
         elif getty_raw != None:
             with open(download_path, 'wb') as f:
                 shutil.copyfileobj(getty_raw, f)
+                del getty_raw
         else:
             print("[!] Skipping {}".format(image_url))
             continue
