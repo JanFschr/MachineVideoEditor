@@ -28,8 +28,8 @@ def get_image_list(url, download_folder, limit):
     soup = BeautifulSoup(str(source).replace('\r\n', ""), "html.parser")
     gallery_list = soup.select('.search-content__gallery-assets')
     if len(gallery_list) == 0 or len(gallery_list) > 1:
-        print (soup)
-        print (url)
+        if debug_output: print (soup)
+        if debug_output: print (url)
         raise Exception("Gallery is empty")
     gallery = gallery_list[0]
     image_list = soup.select('.gallery-mosaic-asset__container img')
