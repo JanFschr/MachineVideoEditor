@@ -139,7 +139,8 @@ if __name__ == "__main__":
     parser.add_argument('--license', default=None, choices=["rf", "rm"], nargs="+")
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
     parser.add_argument('--orientations', default=None, choices=["horizontal", "vertical","square","panoramichorizontal"], nargs="+")
-
+    parser.add_argument("--locations", default=None, nargs="+") # get locations from getty link
+    
     parser.add_argument('--debug', action="store_true", default=False)
     args = parser.parse_args()
 
@@ -154,6 +155,7 @@ if __name__ == "__main__":
     orientations = args.orientations
     family_type = args.family
     image_resolution = f"{args.resolution}x{args.resolution}"
+    locations = args.locations
     
     
 
@@ -179,6 +181,10 @@ if __name__ == "__main__":
     if orientations != None:
         orientations_query = ','.join(orientations)
         url +=  '&orientations=' + orientations_query
+        
+    if locations != None:
+        locations_query = ','.join(locations)
+        url +=  '&locations=' + locations_query
         
     url +="&mediatype=photography"
 
