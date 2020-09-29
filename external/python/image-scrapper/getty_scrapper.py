@@ -127,6 +127,7 @@ if __name__ == "__main__":
     parser.add_argument("--limit", default=6000) # 60 * 100
     parser.add_argument('--sort', default="best", choices=["best", "oldest", "newest", "mostpopular"])
     parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
+    parser.add_argument('--license', default=None, choices=["rf", "rm"], nargs="+")
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
     args = parser.parse_args()
 
@@ -135,7 +136,8 @@ if __name__ == "__main__":
     limit = int(args.limit)
     sort = args.sort
     num_people = args.people
-    people_composition = args.composition
+    license = args.license
+    
 
     query_parsed = query.lower().replace(' ', '-')
 
@@ -149,6 +151,10 @@ if __name__ == "__main__":
     if people_composition != None:
         composition_query = ','.join(people_composition)
         url +=  '&compositions=' + composition_query
+        
+    if license != None:
+        license_query = ','.join(license)
+        url +=  '&license=' + composition_query
 
     # print (url)
     page = 1
