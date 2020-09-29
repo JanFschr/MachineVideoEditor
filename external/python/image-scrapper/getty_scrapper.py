@@ -127,8 +127,9 @@ if __name__ == "__main__":
     parser.add_argument("--limit", default=6000) # 60 * 100
     parser.add_argument("--resolution", default=2048) 
     parser.add_argument('--sort', default="best", choices=["best", "oldest", "newest", "mostpopular"])
+    parser.add_argument('--family', default="editorial", choices=["creative", "editorial"])
     parser.add_argument('--people', default=None, choices=["one", "two", "group","none"], nargs="+")
-    parser.add_argument('--license', default=None, choices=["rf", "rm"], nargs="+")
+    parser.add_argument('--license', default=None, choices=["rf", "rm"])
     parser.add_argument('--composition', default=None, choices=["headshot", "waistup", "fulllength", "threequarterlength", "lookingatcamera", "candid"], nargs="+")
     parser.add_argument('--orientations', default=None, choices=["horizontal", "vertical","square","panoramichorizontal"], nargs="+")
 
@@ -152,8 +153,8 @@ if __name__ == "__main__":
     query_parsed = urllib.parse.quote(query.lower())
 
 
-    url = 'https://www.gettyimages.com/photos/{}?family=editorial&sort={}'.format(
-        str(query_parsed), sort)
+    url = 'https://www.gettyimages.com/photos/{}?family={}&sort={}'.format(
+        str(query_parsed), family_type, sort)
 
     if num_people != None:
         people_query = ','.join(num_people)
